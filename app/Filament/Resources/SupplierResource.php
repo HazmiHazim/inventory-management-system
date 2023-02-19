@@ -42,9 +42,12 @@ class SupplierResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
-                TextColumn::make('name'),
-                TextColumn::make('contact_info'),
+                TextColumn::make('id')
+                    ->label('ID'),
+                TextColumn::make('name')
+                    ->label('Name'),
+                TextColumn::make('contact_info')
+                    ->label('Contact Info'),
             ])
             ->filters([
                 //

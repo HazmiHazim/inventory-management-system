@@ -44,9 +44,12 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
-                TextColumn::make('products.name'),
-                TextColumn::make('quantity_ordered'),
+                TextColumn::make('name')
+                    ->label('Name'),
+                TextColumn::make('products.name')
+                    ->label('Products'),
+                TextColumn::make('quantity_ordered')
+                    ->label('Quantity Ordered'),
             ])
             ->filters([
                 //

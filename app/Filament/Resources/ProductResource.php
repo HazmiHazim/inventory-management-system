@@ -80,7 +80,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //SupplierRelationManager::class
+            SuppliersRelationManager::class
         ];
     }
     
