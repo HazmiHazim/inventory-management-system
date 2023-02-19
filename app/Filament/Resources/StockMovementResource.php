@@ -18,6 +18,7 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\Relationship;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use PhpParser\Node\Stmt\Label;
 
 class StockMovementResource extends Resource
 {
@@ -54,10 +55,14 @@ class StockMovementResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('product.name'),
-                TextColumn::make('quantity_move')->label('Quantity Move'),
-                TextColumn::make('date'),
-                TextColumn::make('type'),
+                TextColumn::make('product.name')
+                    ->label('Product'),
+                TextColumn::make('quantity_move')
+                    ->label('Quantity Move'),
+                TextColumn::make('date')
+                    ->label('Date Move'),
+                TextColumn::make('type')
+                    ->label('Type'),
             ])
             ->filters([
                 //
