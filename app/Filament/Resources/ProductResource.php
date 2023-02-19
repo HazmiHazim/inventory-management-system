@@ -4,7 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Filament\Resources\ProductResource\RelationManagers\SuppliersRelationManager;
 use App\Models\Product;
+use App\Models\Supplier;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
@@ -22,6 +24,10 @@ class ProductResource extends Resource
     protected static ?string $model = Product::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+
+    protected static ?string $navigationGroup = 'System Management';
+
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -44,13 +50,21 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
-                TextColumn::make('description'),
-                TextColumn::make('sku'),
-                TextColumn::make('supplier.name'),
-                TextColumn::make('purchase_price'),
-                TextColumn::make('sale_price'),
-                TextColumn::make('quantity_on_hand'),
+                TextColumn::make('name')
+                    ->label('Products'),
+                TextColumn::make('description')
+                    ->label('Product Description')
+                    ->wrap(),
+                TextColumn::make('sku')
+                    ->label('SKU'),
+                TextColumn::make('supplier.name')
+                    ->label('Supplier Name'),
+                TextColumn::make('purchase_price')
+                    ->label('Purchase Price'),
+                TextColumn::make('sale_price')
+                    ->label('Sale Price'),
+                TextColumn::make('quantity_on_hand')
+                    ->label('Quantity On Hand'),
             ])
             ->filters([
                 //
@@ -66,7 +80,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            //SupplierRelationManager::class
         ];
     }
     

@@ -14,8 +14,6 @@ class Product extends Model
         'description',
         'sku',
         'supplier_id',
-        'supplier_name',
-        'supplier_contact_info',
         'purchase_price',
         'sale_price',
         'quantity_on_hand',
