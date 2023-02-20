@@ -7,7 +7,7 @@
    ```
 - Change directory
     ```
-    cd petakom-management-system
+    cd inventory-management-system
     ```
 - Copy sample `env` file and change configuration according to your need in ".env" file and create Database
     ```
