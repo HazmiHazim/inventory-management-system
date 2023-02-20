@@ -4,16 +4,16 @@ namespace App\Filament\Widgets;
 
 use Filament\Widgets\LineChartWidget;
 
-class TotalOrderCostChart extends LineChartWidget
+class TotalSaleChart extends LineChartWidget
 {
-    protected static ?string $heading = 'Total orders cost';
+    protected static ?string $heading = 'Total sales per month';
 
     protected function getData(): array
     {
         return [
             'datasets' => [
                 [
-                    'label' => 'Orders',
+                    'label' => 'Sales',
                     'data' => [0, 10, 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
                 ],
             ],

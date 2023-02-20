@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use Filament\Widgets\LineChartWidget;
+use Illuminate\Support\Facades\DB;
 
 class TotalOrderChart extends LineChartWidget
 {
@@ -10,14 +11,31 @@ class TotalOrderChart extends LineChartWidget
 
     protected function getData(): array
     {
-        return [
-            'datasets' => [
-                [
-                    'label' => 'Orders',
-                    'data' => [0, 10, 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
-                ],
+        $orders = DB::table('orders')
+            ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+            ->whereYear('created_at', date('Y'))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $datasets = [
+            [
+                'label' => 'Orders', 
+                'data' => $orders->pluck('count')->toArray(),
             ],
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        ];
+
+        for ($month = 1; $month <= 12; $month++) {
+            $monthLabel = date('M', mktime(0, 0, 0, $month, 1));
+            $ordersCount = $orders->where('month', $month)->sum('count');
+
+            $labels[] = $monthLabel;
+            $datasets[0]['data'][] = $ordersCount;
+        }
+
+        return [
+            'datasets' => $datasets,
+            'labels' => $labels,
         ];
     }
 }

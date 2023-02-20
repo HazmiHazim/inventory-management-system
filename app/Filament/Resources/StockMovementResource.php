@@ -56,13 +56,17 @@ class StockMovementResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('product.name')
-                    ->label('Product'),
+                    ->label('Product')
+                    ->searchable(),
                 TextColumn::make('quantity_move')
-                    ->label('Quantity Move'),
+                    ->label('Quantity Move')
+                    ->searchable(),
                 TextColumn::make('date')
-                    ->label('Date Move'),
+                    ->label('Date Move')
+                    ->searchable(),
                 TextColumn::make('type')
-                    ->label('Type'),
+                    ->label('Type')
+                    ->searchable(),
             ])
             ->filters([
                 //

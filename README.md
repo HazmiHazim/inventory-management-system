@@ -3,7 +3,7 @@
 
 - Clone the repo
    ```
-   git clone https://github.com/haziq-danial/petakom-management-system.git
+   git clone https://github.com/HazmiHazim/inventory-management-system
    ```
 - Change directory
     ```

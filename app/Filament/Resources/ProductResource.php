@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Filament\Resources\ProductResource\RelationManagers\SuppliersRelationManager;
+use App\Filament\Widgets\StatsOverview;
 use App\Models\Product;
 use App\Models\Supplier;
 use Filament\Forms;
@@ -35,13 +36,21 @@ class ProductResource extends Resource
             ->schema([
                 Card::make()
                     ->schema([
-                        TextInput::make('name'),
-                        TextInput::make('description'),
-                        TextInput::make('sku'),
-                        Select::make('suppliers_id')->relationship('supplier', 'name'),
-                        TextInput::make('purchase_price'),
-                        TextInput::make('sale_price'),
-                        TextInput::make('quantity_on_hand'),
+                        TextInput::make('name')
+                            ->label('Name'),
+                        TextInput::make('description')
+                            ->label('Description'),
+                        TextInput::make('sku')
+                            ->label('Stock Keeping Unit (SKU)'),
+                        Select::make('suppliers_id')
+                            ->label('Supplier')
+                            ->relationship('supplier', 'name'),
+                        TextInput::make('purchase_price')
+                            ->label('Purcase Price Per Unit'),
+                        TextInput::make('sale_price')
+                            ->label('Sale Price Per Unit'),
+                        TextInput::make('quantity_on_hand')
+                            ->label('Quantity On Hand'),
                     ])
             ]);
     }
@@ -51,20 +60,27 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Products'),
+                    ->label('Products')
+                    ->searchable(),
                 TextColumn::make('description')
                     ->label('Product Description')
+                    ->searchable()
                     ->wrap(),
                 TextColumn::make('sku')
-                    ->label('SKU'),
+                    ->label('SKU')
+                    ->searchable(),
                 TextColumn::make('supplier.name')
-                    ->label('Supplier Name'),
+                    ->label('Supplier Name')
+                    ->searchable(),
                 TextColumn::make('purchase_price')
-                    ->label('Purchase Price'),
+                    ->label('Purchase Price')
+                    ->searchable(),
                 TextColumn::make('sale_price')
-                    ->label('Sale Price'),
+                    ->label('Sale Price')
+                    ->searchable(),
                 TextColumn::make('quantity_on_hand')
-                    ->label('Quantity On Hand'),
+                    ->label('Quantity On Hand')
+                    ->searchable(),
             ])
             ->filters([
                 //
