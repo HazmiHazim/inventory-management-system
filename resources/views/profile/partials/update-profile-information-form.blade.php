@@ -1,4 +1,12 @@
 <section>
+
+    @props(['user' => auth()->user()])
+
+    @php
+        $user = $user ?? auth()->user();
+    @endphp
+
+
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('Profile Information') }}
