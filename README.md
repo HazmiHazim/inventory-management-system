@@ -15,6 +15,7 @@
     ```
 - Install php & javascript libraries
     ```
+    npm run dev
     composer install
     npm install
     ```
